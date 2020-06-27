@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% extends 'task/home.html' %}
+        {% block body_block %}
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body class="bg-navy-blue">
+        <div class="row mb-5">
+            <div class="col-md-8 m-auto border border-radius p-5 bg-white">
+                <h3>Are you sure to delete the record {{task.task_name}}</h3>
+            <form method="post" id="task-delete-form" onsubmit="submitButton.disabled = true;">
+                {{form.as_p}}
+                {% csrf_token %}
+                <div class="col-md-12 pt-3 text-center">
+                        <input name="submitButton" class="btn btn-secondary" type="submit" value="Delete">
+                    </div>
+                      <div class="col-md-12 pt-3 text-center">
+                        <a href = "{% url 'task_list' %}" class="btn btn-gradient d-inline-block">Cancel</a>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </body>
+
+</html>
+{% endblock %}

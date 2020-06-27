@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'task/home.html' %}
+    {% block body_block %}
+<div class="container">
+			<div class="row">
+             <div class="col-6 bg-white border-radius p-5 m-auto nav-shadow">
+                         <h3 class="pb-4" style="text-align:center" >My Account</h3>
+
+
+            <table class="w-100 m-auto user-data" >
+              <tbody>
+                <tr>
+                    <td class="w-50">User Name:</td>
+                    <td class="w-50">{{user_data.username}}</td>
+                </tr>
+                <tr>
+                    <td>Role:</td>
+                    <td>{{user_data.profile.user_role}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+        </div>
+        </div>
+    {% endblock %}

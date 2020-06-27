@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% extends 'task/home.html' %}
+        {% block body_block %}
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body class="bg-navy-blue">
+        <div class="row mb-5">
+            <div class="col-md-8 m-auto border border-radius p-5 bg-white">
+            <form method="post" id="task-create-form" validate_workers_selection-url="{% url 'validate_workers_selection' %}">
+                {% csrf_token %}
+                <div>
+                    {{ form.as_p }}
+
+                     <div class="col-md-12 pt-3 text-center">
+                        <input name="submitButton" class="btn btn-secondary" type="submit" value="Create">
+                    </div>
+                      <div class="col-md-12 pt-3 text-center">
+                        <a href = "{% url 'task_list' %}" class="btn btn-gradient d-inline-block">Discard</a>
+                    </div>
+
+
+                </div>
+            </form>
+            </div>
+        </div>
+    </body>
+
+</html>
+{% endblock %}
+
+
+
+

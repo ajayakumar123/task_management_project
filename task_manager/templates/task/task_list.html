@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'task/home.html' %}
+    {% block body_block %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-10 bg-white border-radius py-5 m-auto nav-shadow">
+            <div class="col-md-12 m-auto px-5 nav-shadow text-center rounded">
+            <h2 class="pb-4" >Tasks</h2>
+        <div class="table-responsive">
+               <table class="table">
+                    <thead>
+                    <tr class="btn-secondary text-white">
+                       <th>Task Name</th>
+                        <th>Created Date</th>
+                        <th>Assign To</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                             <tbody>
+                     {%for task in task_list %}
+                        <tr>
+                            <td>
+                                {{task.task_name}}
+                            </td>
+                            <td>
+                                {{task.created_on|date:"SHORT_DATE_FORMAT"}}
+                            </td>
+                            <td>
+                              {{task.worker}}
+                            </td>
+
+                            <td>{{task.get_status_display}}</td>
+
+                            <td>
+                                <div class="btn-group" role="group" >
+                                    <a class="btn-sm btn btn-secondary" href="{% url 'task_update' task.id%}">
+                                        Update</a>
+
+
+                                </div>
+                                {%if user_role == 'lead'%}
+                                    <div class="btn-group" role="group" >
+                                        <a class="btn-sm btn btn-secondary" href="{% url 'task_delete' task.id%}">
+                                                Delete</a>
+                                    </div>
+                                {% endif %}
+                            </td>
+</tr>
+                   {% endfor %}
+                            </tbody>
+               </table>
+                {%if user_role == 'lead'%}
+                    <div class=" pt-4 text-center">
+                        <a class="btn-sm btn btn-secondary" href="{% url 'task_create' %}">Create</a>
+                    </div>
+                {% endif %}
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+{% endblock %}
